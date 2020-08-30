@@ -1,8 +1,10 @@
 package com.example.interactiveprogress
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
+import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         // Add onchange listener that updates text based on progress value
         seekBar3.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
+            @RequiresApi(Build.VERSION_CODES.HONEYCOMB_MR1)
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
                 // Text displays value proportional to progress
                 textViewProgress.text = progress.toString()
