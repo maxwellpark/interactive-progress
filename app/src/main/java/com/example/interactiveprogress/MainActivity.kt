@@ -12,14 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val initialTextViewTranslationY = textViewProgress.translationY
+        val initialTextViewTranslationY = header_text.translationY
 
         // Add onchange listener that updates text based on progress value
-        seekBar3.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
+        progress_bar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             @RequiresApi(Build.VERSION_CODES.HONEYCOMB_MR1)
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
                 // Text displays value proportional to progress
-                textViewProgress.text = progress.toString()
+                header_text.text = progress.toString()
 
                 // Get animationStep dimensions from resources folder
                 // animationStep is resolution-independent
@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 
                 val translationDistance = initialTextViewTranslationY + progress * animationStep * -1
 
-                // Animate the textview based on updated distance
-                textViewProgress.animate().translationY(translationDistance)
+                // Animate the header_text based on updated distance
+                header_text.animate().translationY(translationDistance)
             }
 
             // No need to implement these
@@ -41,13 +41,12 @@ class MainActivity : AppCompatActivity() {
         })
 
         // Pass in a lambda fn
-        buttonReset.setOnClickListener { v ->
-            seekBar3.progress = 0
+        reset_button.setOnClickListener { v ->
+            progress_bar.progress = 0
 
             // Move text back to original position and rotate it on the way
-            textViewProgress.animate().setDuration(500).rotationBy(360f).
+            header_text.animate().setDuration(500).rotationBy(360f).
                 translationY(initialTextViewTranslationY)
-
         }
 
 

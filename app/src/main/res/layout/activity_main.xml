@@ -9,44 +9,77 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textViewProgress"
-        android:layout_width="153dp"
-        android:layout_height="40dp"
+        android:id="@+id/header_text"
+        android:layout_width="500dp"
+        android:layout_height="80dp"
         android:contentDescription="App Title"
         android:text="Interactive Progress!"
+        android:textAlignment="center"
+        android:textSize="50dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.224" />
+        app:layout_constraintVertical_bias="0.087"
+        android:gravity="center_horizontal" />
+
+<!--    Container for user-defined tasks -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/task_container"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:contentDescription="Task Container"
+        app:layout_constraintBottom_toTopOf="@+id/progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_text">
+
+        <EditText
+            android:id="@+id/editText"
+            android:inputType="text"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Task to complete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="180dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <SeekBar
-        android:id="@+id/seekBar3"
+        android:id="@+id/progress_bar"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="234dp"
-        android:layout_height="126dp"
+        android:layout_width="400dp"
+        android:layout_height="160dp"
+        android:background="@color/colorPrimary"
         android:max="10"
         android:progress="3"
-        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProgress"
-        app:layout_constraintVertical_bias="0.223" />
+        app:layout_constraintTop_toBottomOf="@+id/header_text"
+        app:layout_constraintVertical_bias="0.734" />
 
     <Button
-        android:id="@+id/buttonReset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/reset_button"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
         android:layout_marginTop="2dp"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorAccent"
         android:text="Reset"
+        android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar3" />
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
