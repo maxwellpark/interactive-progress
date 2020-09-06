@@ -3,6 +3,7 @@ package com.example.interactiveprogress
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.SeekBar
 import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,14 +13,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val initialTextViewTranslationY = header_text.translationY
+        val initialTextViewTranslationY = progress_text.translationY
 
         // Add onchange listener that updates text based on progress value
         progress_bar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             @RequiresApi(Build.VERSION_CODES.HONEYCOMB_MR1)
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
                 // Text displays value proportional to progress
-                header_text.text = progress.toString()
+                progress_text.text = progress.toString()
 
                 // Get animationStep dimensions from resources folder
                 // animationStep is resolution-independent
@@ -40,12 +41,14 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+        task_input.setOnFocusChangeListener { view, b -> println("OnFocusChange") }
+
         // Pass in a lambda fn
         reset_button.setOnClickListener { v ->
             progress_bar.progress = 0
 
             // Move text back to original position and rotate it on the way
-            header_text.animate().setDuration(500).rotationBy(360f).
+            progress_text.animate().setDuration(500).rotationBy(360f).
                 translationY(initialTextViewTranslationY)
         }
 
